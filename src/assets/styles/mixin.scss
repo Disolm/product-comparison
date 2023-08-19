@@ -1,0 +1,43 @@
+@mixin text-h1 {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+@mixin text-h4 {
+  font-size: 24px;
+  font-weight: 400;
+}
+@mixin text-h5-heavy {
+  font-size: 18px;
+  font-weight: 900;
+}
+@mixin text-h5 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+@mixin text-h5-easy {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+@mixin text-h6 {
+  font-size: 12px;
+  font-weight: 900;
+}
+
+@mixin text-letter-002 {
+  letter-spacing: 0.02em;
+}
+@mixin text-letter-005 {
+  letter-spacing: 0.05em;
+}
+
+@mixin text-line-height-21 {
+  line-height: 21px;
+}
+@mixin text-line-height-60 {
+  line-height: 60px;
+}
+
+

@@ -1,0 +1,29 @@
+@import 'base.css';
+
+:root {
+    /* color */
+    --pc-c-black: #000000;
+    --pc-c-darck: #3B4157;
+    --pc-c-blue: #0D5ADC;
+    --pc-c-darck_grey: #828286;
+    --pc-c-grey: #A6A5A9;
+    --pc-c-light_grey: #A4A9B9;
+    --pc-c-darck_light: #CDCFD2;
+    --pc-c-light: #E3E3E3;
+    --pc-c-super_light: #F4F9FC;
+    --pc-c-dark_white: #E3E3E3;
+    --pc-c-white: #FFFFFF;
+    --pc-c-placeholder: #C1C1C1;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: local("Roboto-Regular"),
+    url('../fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+
+
+body {
+    font-family: Roboto, serif;
+}
+
