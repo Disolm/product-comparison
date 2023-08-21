@@ -5,8 +5,10 @@
             :style="{backgroundImage: `url(src/server/images/${product.images[0]})`}"
         />
         <UiIcon
+            v-if="isShowIcon"
             ref="iconRef"
-            icon="iconOpen" class="product__icon"
+            icon="iconOpen"
+            class="product__icon"
             @click="modalWindowOpen(product.id)"
         />
         <div class="product__title" :title="product.title"> {{ product.title }}</div>
@@ -25,6 +27,11 @@ export default defineComponent({
         product: {
             type: Object as () => Product,
             required: true,
+        },
+        isShowIcon: {
+            type: Boolean,
+            return: false,
+            default: true
         }
     },
     methods: {

@@ -17,7 +17,12 @@
                 </UiCheckbox>
             </div>
             <div class="catalog__products">
-                <UiProduct v-for="product in filteredProducts" :product="product" :key="product.id"/>
+                <UiProduct
+                    v-for="product in filteredProducts"
+                    :product="product"
+                    :key="product.id"
+                    :is-show-icon="isShowIcon"
+                />
             </div>
         </div>
         <div class="catalog__characteristics">
@@ -100,6 +105,9 @@ export default defineComponent({
             this.$store.commit('savaArrayOutOfSight', arrayOutOfSight)
             return products.slice(0, this.numberShow)
         },
+        isShowIcon() {
+            return this.smartphones.length !== this.filteredProducts.length
+        }
     },
     created() {
         this.getSmartphonesFromServer()

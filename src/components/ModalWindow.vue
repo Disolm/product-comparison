@@ -3,7 +3,10 @@
         <div class="modal-window" v-if="isShowWindow">
             <div class="modal-window__content">
                 <div class="modal-window__wrapper">
-                    <UiInput v-model="value"/>
+                    <UiInput
+                        v-model="value"
+                        v-if="listIsSmall"
+                    />
                     <div class="modal-window__list">
                         <UiProductLittle
                                 class="modal-window__product"
@@ -61,8 +64,11 @@ export default defineComponent({
                     return regexp.test(phone[key])
                 })
             })
-
             return searchPhones
+        },
+        listIsSmall() {
+            const minLength: number = 3
+            return this.phones.length > minLength
         }
     },
     methods: {
