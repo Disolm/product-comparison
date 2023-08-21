@@ -6,27 +6,26 @@
                     <UiInput v-model="value"/>
                     <div class="modal-window__list">
                         <UiProductLittle
-                                class="modal-window__product"
-                                v-for="product in phones"
-                                :key="product.id"
-                                :product="product"
+                            class="modal-window__product"
+                            v-for="product in phones"
+                            :key="product.id"
+                            :product="product"
                         />
                     </div>
                 </div>
             </div>
             <div
-                    class="modal-window__overlay"
-                    :class="{'modal-window__overlay_active': isShowWindow}"
-                    @click="modalClose"
+                class="modal-window__overlay"
+                :class="{'modal-window__overlay_active': isShowWindow}"
+                @click="modalClose"
             />
         </div>
     </UiTransitionFade>
 </template>
-<script>
+<script lang="ts">
 import {defineComponent} from "vue";
 import UiTransitionFade from '@/components/Transition.vue';
 import UiInput from '@/components/UiInput.vue';
-import phone from '../server/api/smartphones.json'
 import UiProductLittle from '@/components/UiProductLittle.vue';
 
 export default defineComponent({
@@ -35,7 +34,6 @@ export default defineComponent({
     data() {
         return {
             value: '',
-            phones: phone.products
         }
     },
     computed: {
@@ -46,13 +44,19 @@ export default defineComponent({
             return this.$store.getters.getCoordinates.top + 'px'
         },
         coordinatesLeft() {
-            return this.$store.getters.getCoordinates.left + 'px'
+            return this.$store.getters.getCoordinates.left  + 'px'
+        },
+        phones() {
+            return this.$store.getters.getArrayOutOfSight
         }
     },
     methods: {
         modalClose() {
             this.$store.dispatch('closeWindow')
         },
+        async getSmartphonesFromServer() {
+            await this.$store.dispatch('getSmartphonesFromServer')
+        }
     }
 })
 </script>
@@ -87,7 +91,6 @@ export default defineComponent({
       background: var(--pc-c-dark_white);
       border-radius: 8px;
     }
-
   }
 
   &__overlay {

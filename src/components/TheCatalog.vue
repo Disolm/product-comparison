@@ -59,12 +59,11 @@
         <ModalWindow/>
     </div>
 </template>
-<script>
+<script lang="ts">
 import {defineComponent} from "vue";
 import NumberOfImpressions from '@/components/NumberOfImpressions.vue';
 import UiCheckbox from "@/components/UiCheckbox.vue";
 import UiProduct from "@/components/UiProduct.vue";
-import smartphones from '@/server/api/smartphones.json'
 import description from '@/server/api/description.json'
 import {klona} from 'klona/json';
 import InfoFormat from "@/components/InfoFormat.vue";
@@ -91,14 +90,23 @@ export default defineComponent({
         }
     },
     computed: {
+        smartphones() {
+            return this.$store.getters.getSmartphones
+        },
         filteredProducts() {
-            const products = klona(smartphones.products)
-            return products.filter((_, idx) => {
-                return idx < this.numberShow
-            })
+            const products = klona(this.smartphones)
+            const arrayOutOfSight = products.slice(this.numberShow)
+            this.$store.commit('savaArrayOutOfSight', arrayOutOfSight)
+            return products.slice(0, this.numberShow)
         },
     },
+    created() {
+        this.getSmartphonesFromServer()
+    },
     methods: {
+        async getSmartphonesFromServer() {
+            await this.$store.dispatch('getSmartphonesFromServer')
+        },
         filteredInfo(product) {
             const filteredInfo = klona(product)
             const arrayKeyValue = Object.entries(filteredInfo).filter(item => {
@@ -111,15 +119,14 @@ export default defineComponent({
                 const arrayDescription = Object.entries(this.description);
 
                 const filtered = arrayDescription.filter(([key, value]) => {
-                    return smartphones.products.some(item => {
-                        return item[key] !== smartphones.products[0][key]
+                    return this.smartphones.some(item => {
+                        return item[key] !== this.smartphones[0][key]
                     })
                 })
                 this.description = Object.fromEntries(filtered)
             } else {
                 this.description = description
             }
-
         },
     },
     watch: {

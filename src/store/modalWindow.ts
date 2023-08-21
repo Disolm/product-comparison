@@ -1,45 +1,49 @@
-import {createStore} from "vuex";
-
+export type Coordinate = {
+    top: number,
+    left: number,
+    idClick: number | null
+}
 export type State = {
     isOpenWindow: boolean
-    coordinates: object
+    coordinates: Coordinate
 }
 const state: State = {
     isOpenWindow: false,
     coordinates: {
         top: 0,
-        left: 0
-    }
+        left: 0,
+        idClick: null,
+    },
 }
 
-export const store = createStore({
+export const storeModal = {
     state,
     mutations:{
-        openWindow( state) {
+        openWindow( state: State ) {
             state.isOpenWindow = true
         },
-        closeWindow( state) {
+        closeWindow( state: State ) {
             state.isOpenWindow = false
         },
-        saveCoordinates (state, coordinates ) {
+        saveCoordinates ( state: State , coordinates: Coordinate ) {
             state.coordinates = {...coordinates}
-        }
+        },
     },
     actions:{
-        openWindow (context) {
-            context.commit('openWindow')
+        openWindow ({ commit }: { commit: Function }) {
+            commit('openWindow')
         },
-        closeWindow (context) {
-            context.commit('closeWindow')
+        closeWindow ({ commit }: { commit: Function }) {
+            commit('closeWindow')
         },
 
     },
     getters: {
-        statusOpenWindow(state) {
+        statusOpenWindow( state: State ) {
             return state.isOpenWindow
         },
-        getCoordinates(state){
+        getCoordinates( state: State ){
             return state.coordinates
         }
     }
-})
+}

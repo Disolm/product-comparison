@@ -13,22 +13,25 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import {defineComponent} from "vue";
 import UiIcon from '@/components/UiIcon.vue';
+import Product from "@/models/Product";
 
 export default defineComponent({
     name: 'UiProductLittle',
     components: {UiIcon},
     props: {
         product: {
-            type: Object,
+            type: Object  as () => Product,
             required: true,
         }
     },
     methods: {
-        modalWindowOpen(idProduct) {
-
+        modalWindowOpen(idSwapTwo) {
+            const idSwapOne: number = this.$store.getters.getCoordinates.idClick
+            this.$store.commit('swapSmartphones', [idSwapOne, idSwapTwo])
+            this.$store.dispatch('closeWindow')
         }
     }
 

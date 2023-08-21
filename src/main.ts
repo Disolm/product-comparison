@@ -2,7 +2,7 @@ import './assets/styles/main.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
-import { store } from "@/store/modalWindow";
+import { store } from "@/store/store";
 
 const app = createApp(App)
 app.use(store)

@@ -13,24 +13,26 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import {defineComponent} from "vue";
 import UiIcon from '@/components/UiIcon.vue';
+import Product from './../models/Product';
 
 export default defineComponent({
     name: 'UiProduct',
     components: {UiIcon},
     props: {
         product: {
-            type: Object,
+            type: Object as () => Product,
             required: true,
         }
     },
     methods: {
-        modalWindowOpen(idProduct) {
+        modalWindowOpen(idProductClick) {
             const coordinates = {
                 top: this.$refs.iconRef.$el.offsetTop,
-                left: this.$refs.iconRef.$el.offsetLeft
+                left: this.$refs.iconRef.$el.offsetLeft,
+                idClick: idProductClick,
             }
             this.$store.commit('saveCoordinates', coordinates)
             this.$store.dispatch('openWindow')
