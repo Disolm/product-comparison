@@ -5,8 +5,9 @@
                 Смартфоны
             </div>
             <NumberOfImpressions
-                    :number-list="numberList"
-                    v-model:number-show="numberShow"
+                v-if="numberList.length > 1"
+                :number-list="numberList"
+                v-model:number-show="numberShow"
             />
         </div>
         <div class="catalog__body">
@@ -22,9 +23,9 @@
         <div class="catalog__characteristics">
             <div class="catalog__aside">
                 <div
-                        class="catalog__description"
-                        v-for="(value, key) in description"
-                        :key="key"
+                    class="catalog__description"
+                    v-for="(value, key) in description"
+                     :key="key"
                 >
                     <UiTransitionGroupFade>
                         <div class="catalog__value catalog__value_disc">
@@ -36,14 +37,14 @@
             </div>
             <div class="catalog__sections">
                 <div
-                        class="catalog__section"
-                        v-for="(product, idx) in filteredProducts"
-                        :key="idx"
+                    class="catalog__section"
+                    v-for="(product, idx) in filteredProducts"
+                    :key="idx"
                 >
                     <div
-                            class="catalog__product-info"
-                            v-for="(valueInfo, keyInfo) in filteredInfo(product)"
-                            :key="keyInfo"
+                        class="catalog__product-info"
+                        v-for="(valueInfo, keyInfo) in filteredInfo(product)"
+                        :key="keyInfo"
                     >
                         <UiTransitionGroupFade>
                             <InfoFormat
@@ -83,7 +84,7 @@ export default defineComponent({
     },
     data() {
         return {
-            numberList: [2, 3, 4, 5, 6],
+            numberList: [],
             numberShow: 3,
             checkedDifferences: false,
             description: description,
@@ -104,8 +105,16 @@ export default defineComponent({
         this.getSmartphonesFromServer()
     },
     methods: {
+        createdNumberList() {
+            const maxLength: number = 6
+            const minLength: number = 2
+            const arrayLength: number = this.smartphones.length > maxLength ? maxLength : this.smartphones.length
+            const tempNumberList: number[] = [...new Array(arrayLength + 1).keys()]
+            this.numberList = tempNumberList.splice(minLength)
+        },
         async getSmartphonesFromServer() {
             await this.$store.dispatch('getSmartphonesFromServer')
+            this.createdNumberList()
         },
         filteredInfo(product) {
             const filteredInfo = klona(product)
@@ -132,7 +141,10 @@ export default defineComponent({
     watch: {
         checkedDifferences() {
             this.excludeDifferences()
-        }
+        },
+        smartphones() {
+            this.createdNumberList()
+        },
     }
 })
 </script>

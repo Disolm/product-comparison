@@ -7,63 +7,37 @@
                 class="number-of-impressions__number"
                 :class="{'number-of-impressions__number_active': number === localNumberShow}"
                 v-for="number in numberList"
+                :key="number"
                 @click="localNumberShow = number"
         >
             {{ number }}
         </div>
     </div>
 </template>
-<script lang="ts">
-import {defineComponent} from "vue";
+<script setup lang="ts">
 
-export default defineComponent({
-    name: 'NumberOfImpressions',
-    emits: ['update:numberShow'],
+import {ref, watch} from "vue";
 
-    props: {
-        numberList: {
-            type: Array,
-            required: true,
-        },
-        numberShow: {
-            type: Number,
-            required: true,
-        },
+const emits = defineEmits<{
+    'update:numberShow': [n: number]
+}>()
+
+const props = defineProps({
+    numberList: {
+        type: Array,
+        required: true,
     },
-    data() {
-        return {
-            localNumberShow: this.numberShow
-        }
-    },
-    watch: {
-        localNumberShow: {
-            immediate: true,
-            handler(newValue) {
-                this.$emit('update:numberShow', newValue)
-            },
-        }
+    numberShow: {
+        type: Number,
+        required: true,
     },
 })
 
-// const props = defineProps({
-//     numberList: {
-//         type: Array,
-//         required: true,
-//     },
-//     numberShow: {
-//         type: Number,
-//         required: true,
-//     },
-// })
-// const emits = defineEmits(['update:modelValue'])
-// const numberShow = computed({
-//     get() {
-//         return numberShow
-//     },
-//     set(num) {
-//         this.$emit('update:numberShow', num)
-//     }
-// })
+const localNumberShow = ref(props.numberShow)
+
+watch(localNumberShow, (value: number) => {
+    emits('update:numberShow', value)
+},{ immediate: true })
 
 </script>
 <style scoped lang="scss">
