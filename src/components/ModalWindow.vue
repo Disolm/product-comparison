@@ -6,18 +6,18 @@
                     <UiInput v-model="value"/>
                     <div class="modal-window__list">
                         <UiProductLittle
-                            class="modal-window__product"
-                            v-for="product in phones"
-                            :key="product.id"
-                            :product="product"
+                                class="modal-window__product"
+                                v-for="product in searchProduct"
+                                :key="product.id"
+                                :product="product"
                         />
                     </div>
                 </div>
             </div>
             <div
-                class="modal-window__overlay"
-                :class="{'modal-window__overlay_active': isShowWindow}"
-                @click="modalClose"
+                    class="modal-window__overlay"
+                    :class="{'modal-window__overlay_active': isShowWindow}"
+                    @click="modalClose"
             />
         </div>
     </UiTransitionFade>
@@ -27,6 +27,7 @@ import {defineComponent} from "vue";
 import UiTransitionFade from '@/components/Transition.vue';
 import UiInput from '@/components/UiInput.vue';
 import UiProductLittle from '@/components/UiProductLittle.vue';
+import type Product from "@/models/Product";
 
 export default defineComponent({
     name: 'ModalWindow',
@@ -44,19 +45,35 @@ export default defineComponent({
             return this.$store.getters.getCoordinates.top + 'px'
         },
         coordinatesLeft() {
-            return this.$store.getters.getCoordinates.left  + 'px'
+            return this.$store.getters.getCoordinates.left + 'px'
         },
         phones() {
             return this.$store.getters.getArrayOutOfSight
+        },
+        searchProduct() {
+            const searchField: string[] = ['title', 'releaseYear']
+            const flag: string = 'gi'
+            const searchStrShielding: string = this.value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")
+            const regexp: RegExp = new RegExp(searchStrShielding, flag)
+            const searchPhones: Product[] = this.phones.filter((phone) => {
+                return searchField.some(key => {
+                    regexp.lastIndex = 0
+                    return regexp.test(phone[key])
+                })
+            })
+
+            return searchPhones
         }
     },
     methods: {
         modalClose() {
+            this.value = ''
             this.$store.dispatch('closeWindow')
         },
         async getSmartphonesFromServer() {
             await this.$store.dispatch('getSmartphonesFromServer')
-        }
+        },
+
     }
 })
 </script>
