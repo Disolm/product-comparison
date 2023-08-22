@@ -1,0 +1,174 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Apple iPhone 14 Pro Max",
+      "manufacturer": "Apple",
+      "releaseYear": 2022,
+      "screenDiagonal": 6.7,
+      "country": "Китай",
+      "memory": 128,
+      "screenRefreshRate": 120,
+      "NFC": true,
+      "eSIM": true,
+      "wirelessCharging": true,
+      "price": 119940,
+      "images": [
+        "636b49cd1846efa2c67f4712.jpg"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Apple iPhone 11",
+      "manufacturer": "Apple",
+      "releaseYear": 2019,
+      "screenDiagonal": 6.1,
+      "country": "Китай",
+      "memory": 128,
+      "screenRefreshRate": 60,
+      "NFC": true,
+      "eSIM": false,
+      "wirelessCharging": true,
+      "price": 51167,
+      "images": [
+        "636b4a1d1846efa2c67f4a57.jpg"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Apple iPhone 12",
+      "manufacturer": "Apple",
+      "releaseYear": 2020,
+      "screenDiagonal": 6.1,
+      "country": "Китай",
+      "memory": 128,
+      "screenRefreshRate": 60,
+      "NFC": true,
+      "eSIM": false,
+      "wirelessCharging": true,
+      "price": 62985,
+      "images": [
+        "636b4a0f1846efa2c67f49be.jpg"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Xiaomi 12",
+      "manufacturer": "Xiaomi",
+      "releaseYear": 2022,
+      "screenDiagonal": 6.28,
+      "country": "Китай",
+      "memory": 128,
+      "screenRefreshRate": 120,
+      "NFC": true,
+      "eSIM": false,
+      "wirelessCharging": true,
+      "price": 110035,
+      "images": [
+        "636b49ee1846efa2c67f4862.jpg"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Apple iPhone 13",
+      "manufacturer": "Apple ",
+      "releaseYear": 2021,
+      "screenDiagonal": 6.1,
+      "country": "Китай",
+      "memory": 128,
+      "screenRefreshRate": 60,
+      "NFC": true,
+      "eSIM": false,
+      "wirelessCharging": true,
+      "price": 69950,
+      "images": [
+        "636b49f71846efa2c67f48c0.jpg"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Realme 10",
+      "manufacturer": "Realme",
+      "releaseYear": 2022,
+      "screenDiagonal": 6.4,
+      "country": "Китай",
+      "memory": 128,
+      "screenRefreshRate": 90,
+      "NFC": false,
+      "eSIM": false,
+      "wirelessCharging": false,
+      "price": 20760,
+      "images": [
+        "63a844cd5638f878a3ba7a3d.jpg"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Infinix Note 12 Pro",
+      "manufacturer": "Infinix",
+      "releaseYear": 2022,
+      "screenDiagonal": 6.7,
+      "country": "Китай",
+      "memory": 128,
+      "screenRefreshRate": 120,
+      "NFC": false,
+      "eSIM": false,
+      "wirelessCharging": false,
+      "price": 27949,
+      "images": [
+        "636b49df1846efa2c67f47c1.jpg"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Xiaomi 11T Pro",
+      "manufacturer": "Xiaomi",
+      "releaseYear": 2021,
+      "screenDiagonal": 6.67,
+      "country": "Китай",
+      "memory": 128,
+      "screenRefreshRate": 120,
+      "NFC": true,
+      "eSIM": false,
+      "wirelessCharging": false,
+      "price": 27949,
+      "images": [
+        "636b49f51846efa2c67f48ad.jpg"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Huawei P60 Pro",
+      "manufacturer": "Huawei",
+      "releaseYear": 2023,
+      "screenDiagonal": 6.67,
+      "country": "Китай",
+      "memory": 128,
+      "screenRefreshRate": 90,
+      "NFC": true,
+      "eSIM": false,
+      "wirelessCharging": true,
+      "price": 69990,
+      "images": [
+        "643272a4744e54a169b10800.jpg"
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Samsung Galaxy A13",
+      "manufacturer": "Samsung",
+      "releaseYear": 2023,
+      "screenDiagonal": 6.6,
+      "country": "Китай",
+      "memory": 128,
+      "screenRefreshRate": 60,
+      "NFC": true,
+      "eSIM": false,
+      "wirelessCharging": false,
+      "price": 11660,
+      "images": [
+        "636b49e51846efa2c67f4808.jpg"
+      ]
+    }
+  ]
+}

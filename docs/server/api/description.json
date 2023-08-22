@@ -1,0 +1,12 @@
+{
+  "manufacturer": "Производитель",
+  "releaseYear": "Год релиза",
+  "screenDiagonal": "Диагональ экрана (дюйм)",
+  "country": "Страна-производитель",
+  "memory": "Объем памяти",
+  "screenRefreshRate": "Частота обновления экрана",
+  "NFC": "NFC",
+  "eSIM": "Поддержка eSIM",
+  "wirelessCharging": "Поддержка беспроводной зарядки",
+  "price": "Стоимость"
+}
