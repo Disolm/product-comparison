@@ -16,7 +16,7 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import UiIcon from '@/components/UiIcon.vue';
-import Product from "@/models/Product";
+import type Product from "@/models/Product";
 
 export default defineComponent({
     name: 'UiProductLittle',
@@ -28,7 +28,7 @@ export default defineComponent({
         }
     },
     methods: {
-        modalWindowOpen(idSwapTwo) {
+        modalWindowOpen(idSwapTwo: number): void {
             const idSwapOne: number = this.$store.getters.getCoordinates.idClick
             this.$store.commit('swapSmartphones', [idSwapOne, idSwapTwo])
             this.$store.dispatch('closeWindow')
@@ -46,10 +46,6 @@ export default defineComponent({
   margin: 30px 0;
   justify-content: flex-start;
   align-items: center;
-
-  &__icon {
-
-  }
 
   &__image {
     height: 50px;

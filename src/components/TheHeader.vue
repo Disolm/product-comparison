@@ -47,8 +47,6 @@ export default defineComponent({
         @include text-letter-002;
     }
     &__profile {
-        //flex: 1;
-        //margin-left: 19px;
         height: 20px;
         width: 20px;
         background: url("../assets/icons/icon-user.svg") 100% 100% no-repeat;

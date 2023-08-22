@@ -1,15 +1,15 @@
 <template>
     <div class="product">
         <div
-            class="product__image"
-            :style="{backgroundImage: `url(src/server/images/${product.images[0]})`}"
+                class="product__image"
+                :style="{backgroundImage: `url(src/server/images/${product.images[0]})`}"
         />
         <UiIcon
-            v-if="isShowIcon"
-            ref="iconRef"
-            icon="iconOpen"
-            class="product__icon"
-            @click="modalWindowOpen(product.id)"
+                v-if="isShowIcon"
+                ref="iconRef"
+                icon="iconOpen"
+                class="product__icon"
+                @click="modalWindowOpen(product.id)"
         />
         <div class="product__title" :title="product.title"> {{ product.title }}</div>
     </div>
@@ -18,8 +18,13 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import UiIcon from '@/components/UiIcon.vue';
-import Product from './../models/Product';
+import type Product from './../models/Product';
 
+interface Coordinates {
+    top: number
+    left: number
+    idClick: number
+}
 export default defineComponent({
     name: 'UiProduct',
     components: {UiIcon},
@@ -35,10 +40,10 @@ export default defineComponent({
         }
     },
     methods: {
-        modalWindowOpen(idProductClick) {
-            const coordinates = {
-                top: this.$refs.iconRef.$el.offsetTop,
-                left: this.$refs.iconRef.$el.offsetLeft,
+        modalWindowOpen(idProductClick: number) {
+            const coordinates: Coordinates = {
+                top: (this.$refs.iconRef as InstanceType<typeof UiIcon>).$el.offsetTop,
+                left: (this.$refs.iconRef as InstanceType<typeof UiIcon>).$el.offsetLeft,
                 idClick: idProductClick,
             }
             this.$store.commit('saveCoordinates', coordinates)

@@ -1,6 +1,4 @@
-export default interface Product {
-    id: number,
-    title: string,
+export default interface ProductMini {
     manufacturer: string,
     releaseYear: number,
     screenDiagonal: number,
@@ -11,6 +9,5 @@ export default interface Product {
     eSIM: boolean,
     wirelessCharging: boolean,
     price: number,
-    images: string[],
     [key: string]: any
 }

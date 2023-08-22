@@ -13,6 +13,7 @@
     "esModuleInterop": true
   },
   "compilerOptions": {
+    "allowJs": true,
     "target": "esnext",
     "module": "esnext",
     "strict": true,
@@ -33,6 +34,9 @@
         "src/*"
       ]
     },
+    "filesGlob": [
+      "**/*.ts"
+    ],
     "lib": [
       "esnext",
       "dom",

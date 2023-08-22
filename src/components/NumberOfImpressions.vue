@@ -15,23 +15,16 @@
     </div>
 </template>
 <script setup lang="ts">
-
 import {ref, watch} from "vue";
 
 const emits = defineEmits<{
     'update:numberShow': [n: number]
 }>()
 
-const props = defineProps({
-    numberList: {
-        type: Array,
-        required: true,
-    },
-    numberShow: {
-        type: Number,
-        required: true,
-    },
-})
+const props = defineProps<{
+    numberList: number[]
+    numberShow: number
+}>()
 
 const localNumberShow = ref(props.numberShow)
 

@@ -4,13 +4,13 @@
     </TransitionGroup>
 </template>
 
-<script>
+<script lang="ts">
 export default {
     name: 'UiTransitionGroupFade',
 
     props: {
         tag: {
-            type: [String, Object, Function],
+            type: String,
             default: 'div',
         },
     },

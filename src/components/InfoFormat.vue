@@ -16,11 +16,18 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 
 import UiIcon from '@/components/UiIcon.vue';
 
-const unit = {
+interface Unit {
+    memory: string,
+    screenRefreshRate: string,
+    price: string,
+    [key: string]: any
+}
+
+const unit: Unit = {
     memory: 'Гб',
     screenRefreshRate: 'Гц',
     price: '₽',
@@ -31,7 +38,7 @@ export default {
 
     props: {
         keyInfo: {
-            type: String,
+            type: [String, Number],
             required: true,
         },
         valueInfo: {
@@ -41,17 +48,17 @@ export default {
     },
 
     computed: {
-        unitSrc() {
+        unitSrc(): string {
             return unit[this.keyInfo] ? unit[this.keyInfo] : '';
         },
-        whichIcon() {
+        whichIcon(): string {
             return this.valueInfo ? 'iconTrue' : 'iconFalse'
         },
-        thisIsBoolean() {
+        thisIsBoolean(): boolean {
             return typeof this.valueInfo == 'boolean'
         },
-        formattedText() {
-            if (this.keyInfo === 'price') {
+        formattedText(): string | number | boolean {
+            if (this.keyInfo === 'price' && typeof this.valueInfo === 'number') {
                 return new Intl.NumberFormat("ru-RU").format(this.valueInfo)
             }
             return this.valueInfo

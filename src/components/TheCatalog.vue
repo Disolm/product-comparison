@@ -75,7 +75,10 @@ import {klona} from 'klona/json';
 import InfoFormat from "@/components/InfoFormat.vue";
 import UiTransitionGroupFade from "@/components/UiTransitionGroupFade.vue";
 import ModalWindow from '@/components/ModalWindow.vue';
+import type Product from "@/models/Product";
+import type ProductInfo from "@/models/ProductInfo";
 
+type KeyValue = [key:string, value: string]
 export default defineComponent({
 
     name: 'TheCatalog',
@@ -89,10 +92,10 @@ export default defineComponent({
     },
     data() {
         return {
-            numberList: [],
-            numberShow: 3,
-            checkedDifferences: false,
-            description: description,
+            numberList: [] as number[],
+            numberShow: 3 as number,
+            checkedDifferences: false as boolean,
+            description: description as ProductInfo,
         }
     },
     computed: {
@@ -100,8 +103,8 @@ export default defineComponent({
             return this.$store.getters.getSmartphones
         },
         filteredProducts() {
-            const products = klona(this.smartphones)
-            const arrayOutOfSight = products.slice(this.numberShow)
+            const products: Product = klona(this.smartphones)
+            const arrayOutOfSight: Product = products.slice(this.numberShow)
             this.$store.commit('savaArrayOutOfSight', arrayOutOfSight)
             return products.slice(0, this.numberShow)
         },
@@ -113,30 +116,29 @@ export default defineComponent({
         this.getSmartphonesFromServer()
     },
     methods: {
-        createdNumberList() {
+        createdNumberList(): void {
             const maxLength: number = 6
             const minLength: number = 2
             const arrayLength: number = this.smartphones.length > maxLength ? maxLength : this.smartphones.length
             const tempNumberList: number[] = [...new Array(arrayLength + 1).keys()]
             this.numberList = tempNumberList.splice(minLength)
         },
-        async getSmartphonesFromServer() {
+        async getSmartphonesFromServer(): Promise<void>  {
             await this.$store.dispatch('getSmartphonesFromServer')
             this.createdNumberList()
         },
-        filteredInfo(product) {
-            const filteredInfo = klona(product)
-            const arrayKeyValue = Object.entries(filteredInfo).filter(item => {
+        filteredInfo(product: Product) {
+            const filteredInfo: Product = klona(product)
+            const arrayKeyValue: KeyValue[] = Object.entries(filteredInfo).filter(item => {
                 return Object.keys(this.description).includes(item[0])
             })
             return Object.fromEntries(arrayKeyValue)
         },
         excludeDifferences() {
             if (this.checkedDifferences) {
-                const arrayDescription = Object.entries(this.description);
-
-                const filtered = arrayDescription.filter(([key, value]) => {
-                    return this.smartphones.some(item => {
+                const arrayDescription: KeyValue[] = Object.entries(this.description);
+                const filtered: KeyValue[] = arrayDescription.filter(([key, value]: KeyValue) => {
+                    return this.smartphones.some((item: Product) => {
                         return item[key] !== this.smartphones[0][key]
                     })
                 })

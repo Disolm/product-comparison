@@ -11,29 +11,28 @@
     </label>
 </template>
 
-<script>
-import {defineComponent} from "vue";
+<script lang="ts">
+import {computed, defineComponent} from "vue";
 
 export default defineComponent({
     name: 'UiCheckbox',
+    inheritAttrs: false,
+    emits: ['update:modelValue'],
     props: {
         modelValue: {
-            type: [Boolean, Array, Set],
+            type: Boolean,
             required: false
         }
     },
-    inheritAttrs: false,
-    emits: ['update:modelValue'],
-    computed: {
-        checkValue: {
-            get() {
-                return this.modelValue
-            },
-            set(value) {
-                this.$emit('update:modelValue', value)
-            }
-        }
-    }
+    setup( props, { emit } ) {
+        const checkValue = computed({
+                get: () => props.modelValue,
+                set: value => emit('update:modelValue', value),
+        })
+        return {
+            checkValue,
+        };
+    },
 });
 </script>
 

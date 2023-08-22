@@ -7,14 +7,15 @@
             class="input__input"
             :value="modelValue"
             v-bind="$attrs"
-            @input="$emit('update:modelValue', $event.target.value)"
+            @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value )"
             placeholder="Писк"
         />
     </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
+
     name: 'UiInput',
     inheritAttrs: false,
     props: {
@@ -26,7 +27,7 @@ export default {
     emits: ['update:modelValue'],
     methods: {
         focus() {
-            this.$refs.input.focus();
+            (this.$refs.input as HTMLInputElement).focus();
         },
     },
     mounted() {
@@ -39,10 +40,8 @@ export default {
 
 .input {
     &__input {
-        //margin: 34px 18px 18px 18px;
         height: 47px;
         width: 100%;
-        //width: calc(100% - 18px - 18px);
         background: var(--pc-c-white);
         border: 1px solid var(--pc-c-light);
         @include text-h4;

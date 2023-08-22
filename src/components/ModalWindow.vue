@@ -37,7 +37,7 @@ export default defineComponent({
     components: {UiProductLittle, UiInput, UiTransitionFade},
     data() {
         return {
-            value: '',
+            value: '' as string,
         }
     },
     computed: {
@@ -58,8 +58,8 @@ export default defineComponent({
             const flag: string = 'gi'
             const searchStrShielding: string = this.value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")
             const regexp: RegExp = new RegExp(searchStrShielding, flag)
-            const searchPhones: Product[] = this.phones.filter((phone) => {
-                return searchField.some(key => {
+            const searchPhones: Product[] = this.phones.filter((phone: Product) => {
+                return searchField.some((key: string) => {
                     regexp.lastIndex = 0
                     return regexp.test(phone[key])
                 })
@@ -100,7 +100,6 @@ export default defineComponent({
   }
 
   &__wrapper {
-    //height: calc(100% - 18px - 18px);
     height: 100%;
     padding-right: 21px;
     overflow: auto;
